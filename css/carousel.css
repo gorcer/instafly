@@ -1,0 +1,10 @@
+/* Tiny Carousel */
+#lastlist { overflow:hidden; padding: 0 0 10px;   }
+#lastlist .viewport { float: left;  height: 220px; overflow: hidden; position: relative; }
+#lastlist .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#lastlist .next { background-position: 0 0; margin: 30px 0 0 10px;  }
+#lastlist .disable { visibility: hidden; }
+#lastlist .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0 top: 0; }
+#lastlist .overview li{ float: left; margin: 0 14px 0 0; width: 150px;}
+#lastlist .overview li img { padding: 1px; border: 1px solid #dcdcdc;}
+#lastlist .overview li small {display: block;}
