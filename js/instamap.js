@@ -11,8 +11,8 @@ if (typeof Object.create !== 'function') {
 			id:0,
 			mapobj:null,
 			instaobj:null,
-			life:20*60, // 10 минут живет на карте метка			
-			speed:0.00001, /*deprecated скорость движения*/
+			life:20*60, // 10 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ			
+			speed:0.00001, /*deprecated пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 			instamap:null,
 			bornat:0,
 			
@@ -79,7 +79,6 @@ if (typeof Object.create !== 'function') {
 			fetch: function (getData) {
 		            var self = this,
 		                getUrl = self.insta_url + getData;
-
 		            return $.ajax({
 		                type: "GET",
 		                dataType: "jsonp",
@@ -104,14 +103,14 @@ if (typeof Object.create !== 'function') {
 									
 					var len =  self.balloons.length;
 					
-					// Проверяем на наличие			
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ			
 					for (var i = 0; i < len; i++) {
 						//console.log('for', self.balloons[i].instaobj.id);						
 						if (element.id == self.balloons[i].instaobj.id) 						
 							return;							
 					};
 					
-					//Создаем кластер
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					if (self.cluster == null)
 						{
 						self.cluster = new ymaps.Clusterer({minClusterSize:6, preset: 'twirl#yellowClusterIcons'});
@@ -119,21 +118,21 @@ if (typeof Object.create !== 'function') {
 						console.log(self.cluster);
 						}
 					
-					// Добавляем метку на карту
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					var balloon = new ymaps.Placemark([element.location.latitude, element.location.longitude], {			            
 						balloonContentHeader: caption,
 			            balloonContentBody: '<a target="_blank" href="'+element.link+'"><img src="'+element.images.thumbnail.url+'"/></a>',
 			            balloonContentFooter: "",
-			            hintContent: caption,			            
+			            hintContent: caption
 			        },
 			        {
 			        	iconImageHref: 'img/instagram.png',
 			        	iconImageSize: [32, 32],
-			        	iconOpacity: 0.2,
+			        	iconOpacity: 0.2
 			        }
 					);
 					
-					// От каждого пользователь запихиваем в кластер по одной фотке
+					// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					 if (typeof(self.uniqUsers[element.user.id])=='undefined' || self.uniqUsers[element.user.id]===null) { 
 						 self.uniqUsers[element.user.id] = element.user.username;
 						 self.cluster.add(balloon);
@@ -143,13 +142,13 @@ if (typeof Object.create !== 'function') {
 					
 					
 					
-					// Добавляем фото в список
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					$('#'+self.options.PhotoList).prepend("<li><a target='_blank' href='"+element.link+"'><img src='"+element.images.thumbnail.url+"'/></a><br/><small>"+caption.substring(0,100)+"</small></li>");
 					//$('#'+self.options.PhotoList).tinycarousel({ display: 1 });
 					
 			//		console.log('#'+self.options.PhotoList+"div ul", element.images.thumbnail.url);
 					
-					// Запоминаем объект
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					self.balloons[len] = Object.create( InstaBaloon );				
 					self.balloons[len].mapobj = balloon;
 					self.balloons[len].instaobj = element;
@@ -183,7 +182,7 @@ if (typeof Object.create !== 'function') {
 				
 					var	self=this,
 					getData = '/media/search?lat='+lat+'&lng='+lng+'&distance='+distance+'&min_timestamp='+from_tm+'&access_token='+self.options.accessToken+'';					
-										
+
 			        this.fetch(getData).done(function ( results ) {   
 			      //  	console.log('found', results);
 			        	self.placePhotos(results);
@@ -191,7 +190,7 @@ if (typeof Object.create !== 'function') {
 				},
 				
 			/**
-			 * Сканируем карту кругами в поисках фото
+			 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			 */
 			scanMap: function(tm) {
 				
