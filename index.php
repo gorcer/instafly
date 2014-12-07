@@ -45,14 +45,19 @@ if ($uid == false)
 	<div class="large-3 columns">
 		<h2>InstaFly</h2>
 	</div>
-	<div class="large-9 columns">
-	<!--<ul class="right button-group">
-		<li><a href="#" class="button">Link 1</a></li>
-		<li><a href="#" class="button">Link 2</a></li>
-		<li><a href="#" class="button">Link 3</a></li>
-		<li><a href="#" class="button">Link 4</a></li>
-		</ul>
-	-->
+     <div class="large-7 columns">
+         &nbsp;
+     </div>
+	<div class="large-2 columns">
+        <label>Период</label>
+        <select id="periodSelect">
+            <option value="15m">15 минут</option>
+            <option value="30m">30 минут</option>
+            <option value="1h">1 час</option>
+            <option value="6h">6 часов</option>
+            <option value="24h">24 часа</option>
+            <option value="6d">6 дней</option>
+        </select>
 	</div>
 </div>
 
@@ -152,7 +157,7 @@ function init(){
 	
 	//instamap.getByCoords(42.993704, 131.929754, 5000);
 	
-	instamap.run(60*60);
+	instamap.run();
 	
 	}
 </script>

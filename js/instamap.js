@@ -44,14 +44,23 @@ if (typeof Object.create !== 'function') {
 				
 			},*/
 			die:function() {
-					
+
+                var self = this;
+
 				if (this.instamap.cluster != null)					
-					this.instamap.cluster.remove(this.mapobj);					
-				
-				if (this.mapobj.getMap() != null)					
-					this.mapobj.getMap().remove(this.mapobj);
-					
-				console.log('remove', this);
+					this.instamap.cluster.remove(this.mapobj);
+
+                if (this.instamap.map != null) {
+                    this.instamap.map.geoObjects.each(function(obj){
+                        if (obj == self.mapobj) {
+                            self.instamap.map.geoObjects.remove(obj);
+                        }
+                    });
+                }
+
+				/*if (this.mapobj.getMap() != null && this.mapobj.getMap() != undefined)
+					this.mapobj.getMap().remove(this.mapobj);*/
+
 				delete this.instamap.balloons[this.instamap.balloons.indexOf(this)];	
 				
 			}
@@ -69,16 +78,45 @@ if (typeof Object.create !== 'function') {
 			runTimes:50,
 			runInterval:25,
 			cluster:null,
+            scanTime:15*60,
 			
 			init: function (map, photo_div, options) {				
 				this.map=map;
 				this.options = options;
+                var self = this;
+
+                $('#periodSelect').change(function() {
+                      self.updateRefreshPeriod();
+                    });
+
+                map.events.add('actionend', function (e) {
+                   self.scanMap();
+                });
 			},
-			
+
+            updateRefreshPeriod: function () {
+                var value=$('#periodSelect').val(),
+                    tm=0;
+
+              switch (value) {
+                  case '15m': tm = 15 * 60; break;
+                  case '30m': tm = 30 * 60; break;
+                  case '1h':  tm = 60 * 60; break;
+                  case '6h':  tm = 6 * 60 * 60; break;
+                  case '24h': tm = 24 * 60 * 60; break;
+                  case '6d': tm =  6 * 24 * 60 * 60; break;
+              }
+
+               this.scanTime = tm;
+
+               this.scanMap();
+
+            },
 	
 			fetch: function (getData) {
 		            var self = this,
 		                getUrl = self.insta_url + getData;
+
 		            return $.ajax({
 		                type: "GET",
 		                dataType: "jsonp",
@@ -91,11 +129,9 @@ if (typeof Object.create !== 'function') {
 			placePhotos: function(list) {
 				
 				var caption = '',
-					self = this;					
-					
+					self = this;
 				
-				list.data.forEach(function(element, index) {					
-					
+				list.data.forEach(function(element, index) {
 
 					caption='';
 					if (element.caption!=null)
@@ -178,7 +214,7 @@ if (typeof Object.create !== 'function') {
 				var distance=5000;
 				var from_tm = Math.round(+new Date()/1000)-tm;
 				
-				
+				console.log('Search data from', new Date(from_tm*1000) );
 				
 					var	self=this,
 					getData = '/media/search?lat='+lat+'&lng='+lng+'&distance='+distance+'&min_timestamp='+from_tm+'&access_token='+self.options.accessToken+'';					
@@ -192,8 +228,11 @@ if (typeof Object.create !== 'function') {
 			/**
 			 * ��������� ����� ������� � ������� ����
 			 */
-			scanMap: function(tm) {
-				
+			scanMap: function() {
+
+                $('#'+this.options.PhotoList).empty();
+                this.killAll();
+
 				var self = this,
 				bounds = self.map.getBounds(),
 				x1 = bounds[0][1],
@@ -202,23 +241,35 @@ if (typeof Object.create !== 'function') {
 				y2 = bounds[1][0],
 				w = x2-x1,
 				h = y2-y1,
-				span = 5*self.km1,
-				x_n = Math.round(w/(span)),
-				y_n =  Math.round(h/(span));
-			
-			
+				span = 4*self.km1,
+				x_n = Math.ceil(w/(span)),
+				y_n =  Math.ceil(h/(span)),
+                spanW=span,
+                spanH=span;
+
+                if (spanW > w) spanW = w;
+                if (spanH > h) spanH = h;
+
+			    console.log('Bounds:',bounds);
 			
 				for (var i=0;i<=x_n;i++)
 					for (var j=0;j<=y_n;j++)
 					{
-						var x11= x1 + i*span+span;
-						var y11= y1 + j*span+span;					
+						var x11= x1 + i*spanW+spanW/2;
+						var y11= y1 + j*spanH+spanH/2;
 				
-					//	console.log('getByCoords', y11, x11, tm);
-						self.getByCoords(y11, x11, tm);					
+						console.log('getByCoords', y11, x11);
+						self.getByCoords(y11, x11, this.scanTime);
 					}
 			},
-			
+
+            killAll: function() {
+                this.balloons.forEach(function(element, index) {
+                        element.die();
+                });
+                this.balloons = [];
+            },
+
 			killOld: function() {
 				
 				var newArr = [];
@@ -234,20 +285,22 @@ if (typeof Object.create !== 'function') {
 				  this.balloons = newArr;			        
 			},
 			
-			run: function(tm) {
+			run: function() {
 				var self = this;
 				//console.log('run');
-				this.scanMap(tm);
-				this.killOld();
+				this.scanMap();
+				//this.killOld();
 				
-				if (this.runTimes>0)
+				/*if (this.runTimes>0)
 				{
 					this.runTimes--;
 					//console.log('runtime', this.runTimes);
 					setTimeout(function(){
 						self.run(self.runInterval);
 					}, self.runInterval * 1000);
-				}
+				}*/
+
+
 			}
 			
 		
