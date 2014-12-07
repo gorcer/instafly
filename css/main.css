@@ -5,3 +5,5 @@
 .small {
 	display:block;
 }
+
+.row {min-width:100% !important;}

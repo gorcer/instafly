@@ -116,7 +116,7 @@ if (typeof Object.create !== 'function') {
 			fetch: function (getData) {
 		            var self = this,
 		                getUrl = self.insta_url + getData;
-
+                        console.log(getUrl);
 		            return $.ajax({
 		                type: "GET",
 		                dataType: "jsonp",
@@ -179,10 +179,10 @@ if (typeof Object.create !== 'function') {
 					
 					
 					// ��������� ���� � ������
-					$('#'+self.options.PhotoList).prepend("<li><a target='_blank' href='"+element.link+"'><img src='"+element.images.thumbnail.url+"'/></a><br/><small>"+caption.substring(0,100)+"</small></li>");
+					$('#'+self.options.PhotoList).prepend("<li><a target='_blank' href='"+element.link+"' title='"+caption.substring(0,100)+"'><img src='"+element.images.thumbnail.url+"'/></a>");
 					//$('#'+self.options.PhotoList).tinycarousel({ display: 1 });
 					
-			//		console.log('#'+self.options.PhotoList+"div ul", element.images.thumbnail.url);
+			        //	console.log('#'+self.options.PhotoList+"div ul", element.images.thumbnail.url);
 					
 					// ���������� ������
 					self.balloons[len] = Object.create( InstaBaloon );				
@@ -210,8 +210,7 @@ if (typeof Object.create !== 'function') {
 		    //Media		
 			//Get the media by coords
 			// tm in second
-			getByCoords: function (lat, lng, tm) {
-				var distance=5000;
+			getByCoords: function (lat, lng, tm, distance) {
 				var from_tm = Math.round(+new Date()/1000)-tm;
 				
 				console.log('Search data from', new Date(from_tm*1000) );
@@ -220,7 +219,7 @@ if (typeof Object.create !== 'function') {
 					getData = '/media/search?lat='+lat+'&lng='+lng+'&distance='+distance+'&min_timestamp='+from_tm+'&access_token='+self.options.accessToken+'';					
 
 			        this.fetch(getData).done(function ( results ) {   
-			      //  	console.log('found', results);
+			        	console.log('found', results);
 			        	self.placePhotos(results);
 			            });
 				},
@@ -252,14 +251,14 @@ if (typeof Object.create !== 'function') {
 
 			    console.log('Bounds:',bounds);
 			
-				for (var i=0;i<=x_n;i++)
-					for (var j=0;j<=y_n;j++)
+				for (var i=0;i<x_n;i++)
+					for (var j=0;j<y_n;j++)
 					{
 						var x11= x1 + i*spanW+spanW/2;
 						var y11= y1 + j*spanH+spanH/2;
 				
 						console.log('getByCoords', y11, x11);
-						self.getByCoords(y11, x11, this.scanTime);
+						self.getByCoords(y11, x11, this.scanTime, Math.max(spanW, spanH)*1/self.km1*1000);
 					}
 			},
 

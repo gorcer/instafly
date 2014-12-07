@@ -32,9 +32,7 @@ if ($uid == false)
 
 
   <script src="js/vendor/custom.modernizr.js"></script>
-  
-  
-	
+
 <script type="text/javascript" src="js/instamap.js"></script>
  
 <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU" type="text/javascript"></script>
@@ -46,7 +44,7 @@ if ($uid == false)
 		<h2>InstaFly</h2>
 	</div>
      <div class="large-7 columns">
-         &nbsp;
+           <h3>Просматривайте фотографии интересных мест</h3>
      </div>
 	<div class="large-2 columns">
         <label>Период</label>
@@ -63,7 +61,7 @@ if ($uid == false)
 
  <div class="row">
   <div class="large-12 columns">	
-   <div class="panel"  id="map" style="height: 500px;"></div>
+   <div class="panel"  id="map" style="height: 640px;"></div>
   </div>
   <hr/>
  </div> 
@@ -88,7 +86,7 @@ if ($uid == false)
 
 <div class="row">
   <div class="large-12 columns">	
-		<ul class="small-block-grid-6" id="lastlist">
+		<ul class="small-block-grid-12" id="lastlist">
 		  
 		</ul>
  </div>
