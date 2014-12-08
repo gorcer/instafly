@@ -116,7 +116,7 @@ if (typeof Object.create !== 'function') {
 			fetch: function (getData) {
 		            var self = this,
 		                getUrl = self.insta_url + getData;
-                        console.log(getUrl);
+                      //  console.log(getUrl);
 		            return $.ajax({
 		                type: "GET",
 		                dataType: "jsonp",
@@ -151,7 +151,7 @@ if (typeof Object.create !== 'function') {
 						{
 						self.cluster = new ymaps.Clusterer({minClusterSize:6, preset: 'twirl#yellowClusterIcons'});
 						self.map.geoObjects.add(self.cluster);
-						console.log(self.cluster);
+						//console.log(self.cluster);
 						}
 					
 					// ��������� ����� �� �����
@@ -213,13 +213,13 @@ if (typeof Object.create !== 'function') {
 			getByCoords: function (lat, lng, tm, distance) {
 				var from_tm = Math.round(+new Date()/1000)-tm;
 				
-				console.log('Search data from', new Date(from_tm*1000) );
+				//console.log('Search data from', new Date(from_tm*1000) );
 				
 					var	self=this,
 					getData = '/media/search?lat='+lat+'&lng='+lng+'&distance='+distance+'&min_timestamp='+from_tm+'&access_token='+self.options.accessToken+'';					
 
 			        this.fetch(getData).done(function ( results ) {   
-			        	console.log('found', results);
+			        	//console.log('found', results);
 			        	self.placePhotos(results);
 			            });
 				},
@@ -249,7 +249,7 @@ if (typeof Object.create !== 'function') {
                 if (spanW > w) spanW = w;
                 if (spanH > h) spanH = h;
 
-			    console.log('Bounds:',bounds);
+			  //  console.log('Bounds:',bounds);
 			
 				for (var i=0;i<x_n;i++)
 					for (var j=0;j<y_n;j++)
@@ -257,7 +257,7 @@ if (typeof Object.create !== 'function') {
 						var x11= x1 + i*spanW+spanW/2;
 						var y11= y1 + j*spanH+spanH/2;
 				
-						console.log('getByCoords', y11, x11);
+						//console.log('getByCoords', y11, x11);
 						self.getByCoords(y11, x11, this.scanTime, Math.max(spanW, spanH)*1/self.km1*1000);
 					}
 			},

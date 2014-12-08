@@ -40,11 +40,14 @@ if ($uid == false)
 <body>
 
  <div class="row">
-	<div class="large-3 columns">
+	<div class="large-2 columns">
 		<h2>InstaFly</h2>
 	</div>
-     <div class="large-7 columns">
-           <h3>Просматривайте фотографии интересных мест</h3>
+     <div class="large-8 columns">
+         <center>
+             <h3>Просматривайте фотографии интересных мест</h3>
+             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>
+         </center>
      </div>
 	<div class="large-2 columns">
         <label>Период</label>
@@ -63,10 +66,19 @@ if ($uid == false)
   <div class="large-12 columns">	
    <div class="panel"  id="map" style="height: 640px;"></div>
   </div>
-  <hr/>
- </div> 
+ </div>
 
-<!-- 
+ <hr/>
+
+ <div class="row">
+     <div class="large-12 columns">
+         InstaFly - это сайт, на котором вы можете посмотреть какие фотографии выкладываются в сервис инстаграм в интересующих вас районах города. Вы можете выбрать период за который будут загружаться фотографии из Instagram на карту. Под картой выводится список найденных фотографий. При каждом перемещении происходит обновление списка загруженных на карту фотографий из instagram. Для работы с проектом вам предварительно необходимо авторизоваться в инстаграме.
+     </div>
+</div>
+
+ <hr/>
+
+     <!--
  <div class="row">
   <div class="large-12 columns">	
    
@@ -101,7 +113,42 @@ if ($uid == false)
 			<div class="row">
 				<div class="large-6 columns">
 					<p>&copy; All rights reserved.</p>
-				</div>			
+				</div>
+                <div class="large-6 columns">
+                    <!-- Yandex.Metrika informer -->
+                    <a href="https://metrika.yandex.ru/stat/?id=22485028&amp;from=informer"
+                       target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/22485028/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                                                           style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:22485028,lang:'ru'});return false}catch(e){}"/></a>
+                    <!-- /Yandex.Metrika informer -->
+
+                    <!-- Yandex.Metrika counter -->
+                    <script type="text/javascript">
+                        (function (d, w, c) {
+                            (w[c] = w[c] || []).push(function() {
+                                try {
+                                    w.yaCounter22485028 = new Ya.Metrika({id:22485028,
+                                        webvisor:true,
+                                        clickmap:true,
+                                        trackLinks:true,
+                                        accurateTrackBounce:true});
+                                } catch(e) { }
+                            });
+
+                            var n = d.getElementsByTagName("script")[0],
+                                s = d.createElement("script"),
+                                f = function () { n.parentNode.insertBefore(s, n); };
+                            s.type = "text/javascript";
+                            s.async = true;
+                            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                            if (w.opera == "[object Opera]") {
+                                d.addEventListener("DOMContentLoaded", f, false);
+                            } else { f(); }
+                        })(document, window, "yandex_metrika_callbacks");
+                    </script>
+                    <noscript><div><img src="//mc.yandex.ru/watch/22485028" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+                    <!-- /Yandex.Metrika counter -->
+                </div>
 		</div>
 	</div>
 </footer>
@@ -119,9 +166,21 @@ var myMap;
 
 
 
+
 function init(){
-	myMap = new ymaps.Map ("map", {
-	    center: [43.126642,131.919037],
+
+    var
+        lat = 33.126642,
+        long = 131.919037;
+
+    if (ymaps.geolocation !== undefined) {
+        long = ymaps.geolocation.longitude;
+        lat = ymaps.geolocation.latitude;
+
+    }
+
+        myMap = new ymaps.Map ("map", {
+	    center: [lat, long],
 	    zoom: 12,
 	    behaviors: ['default', 'scrollZoom']
 	});				
