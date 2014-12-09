@@ -2,7 +2,7 @@
 //session_start();
 
 $client_id = 'e0f6616ab38d4e9a99e20c47c97cbef2';
-$redirectUri = 'http://insta.gorcer.com/';
+$redirectUri = 'http://instafly.gorcer.com/';
 
 //$uid = $_SESSION['token'];
 /*
