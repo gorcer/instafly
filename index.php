@@ -46,7 +46,7 @@ if ($uid == false)
      <div class="large-8 columns">
          <center>
              <h3>Просматривайте фотографии интересных мест</h3>
-             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>
+             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter" data-yashareLink="<?=$redirectUri ?>"></div>
          </center>
      </div>
 	<div class="large-2 columns">
