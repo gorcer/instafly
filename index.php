@@ -17,7 +17,7 @@ if ($uid == false)
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<meta property="og:image" content="/img/screenshot.png">
-	<meta property="og:title" content="Что такое schema.org"/> <!--Название видео-->
+	<meta property="og:title" content="InstaFly - фотографии на карте"/> <!--Название видео-->
 	<meta property="og:url" content="<?=$redirectUri ?>" /> <!--Канонический путь к странице-->
 	<meta property="og:description" content="<?=$description ?>"/> <!--Описание видео-->
 
