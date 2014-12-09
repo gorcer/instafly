@@ -3,7 +3,7 @@
 
 $client_id = 'e0f6616ab38d4e9a99e20c47c97cbef2';
 $redirectUri = 'http://instafly.gorcer.com/';
-
+$description = 'InstaFly - это сайт, на котором вы можете посмотреть какие фотографии выкладываются в сервис инстаграм в интересующих вас районах города. Вы можете выбрать период за который будут загружаться фотографии из Instagram на карту. Под картой выводится список найденных фотографий. При каждом перемещении происходит обновление списка загруженных на карту фотографий из instagram. Для работы с проектом вам предварительно необходимо авторизоваться в инстаграме.';
 //$uid = $_SESSION['token'];
 /*
 if ($uid == false)
@@ -14,24 +14,25 @@ if ($uid == false)
 
 ?>
 <head>
- <meta charset="utf-8" />
- <meta name="viewport" content="width=device-width" />
- <title>InstaFly</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta property="og:image" content="/img/screenshot.png">
+	<meta property="og:title" content="Что такое schema.org"/> <!--Название видео-->
+	<meta property="og:url" content="<?=$redirectUri ?>" /> <!--Канонический путь к странице-->
+	<meta property="og:description" content="<?=$description ?>"/> <!--Описание видео-->
+
+	<title>InstaFly - фотографии на карте</title>
  
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
  
-  <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-  <link rel="stylesheet" href="css/normalize.css" />
-  <link rel="stylesheet" href="css/foundation.css" />
-  
-  <link rel="stylesheet" href="css/main.css" />
+	<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/foundation.css" />
 
-
-  <link rel="stylesheet" href="css/carousel.css" />
-  <script type="text/javascript" src="js/jquery.tinycarousel.min.js"></script>
-
-
-  <script src="js/vendor/custom.modernizr.js"></script>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/carousel.css" />
+	<script type="text/javascript" src="js/jquery.tinycarousel.min.js"></script>
+	<script src="js/vendor/custom.modernizr.js"></script>
 
 <script type="text/javascript" src="js/instamap.js"></script>
  
@@ -46,7 +47,7 @@ if ($uid == false)
      <div class="large-8 columns">
          <center>
              <h3>Просматривайте фотографии интересных мест</h3>
-             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter" data-yashareLink="<?=$redirectUri ?>" data-yashareImage="img/screenshot.png"></div>
+             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter" data-yashareLink="<?=$redirectUri ?>" data-yashareImage="/img/screenshot.png"></div>
          </center>
      </div>
 	<div class="large-2 columns">
@@ -99,7 +100,7 @@ if ($uid == false)
 
  <div class="row">
 	 <div class="large-12 columns">
-		 InstaFly - это сайт, на котором вы можете посмотреть какие фотографии выкладываются в сервис инстаграм в интересующих вас районах города. Вы можете выбрать период за который будут загружаться фотографии из Instagram на карту. Под картой выводится список найденных фотографий. При каждом перемещении происходит обновление списка загруженных на карту фотографий из instagram. Для работы с проектом вам предварительно необходимо авторизоваться в инстаграме.
+		 <?=$description ?>
 	 </div>
  </div>
 
