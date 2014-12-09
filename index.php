@@ -46,7 +46,7 @@ if ($uid == false)
      <div class="large-8 columns">
          <center>
              <h3>Просматривайте фотографии интересных мест</h3>
-             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter" data-yashareLink="<?=$redirectUri ?>"></div>
+             <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter" data-yashareLink="<?=$redirectUri ?>" data-yashareImage="img/screenshot.png"></div>
          </center>
      </div>
 	<div class="large-2 columns">
@@ -70,13 +70,6 @@ if ($uid == false)
 
  <hr/>
 
- <div class="row">
-     <div class="large-12 columns">
-         InstaFly - это сайт, на котором вы можете посмотреть какие фотографии выкладываются в сервис инстаграм в интересующих вас районах города. Вы можете выбрать период за который будут загружаться фотографии из Instagram на карту. Под картой выводится список найденных фотографий. При каждом перемещении происходит обновление списка загруженных на карту фотографий из instagram. Для работы с проектом вам предварительно необходимо авторизоваться в инстаграме.
-     </div>
-</div>
-
- <hr/>
 
      <!--
  <div class="row">
@@ -104,7 +97,13 @@ if ($uid == false)
  </div>
 </div>
 
+ <div class="row">
+	 <div class="large-12 columns">
+		 InstaFly - это сайт, на котором вы можете посмотреть какие фотографии выкладываются в сервис инстаграм в интересующих вас районах города. Вы можете выбрать период за который будут загружаться фотографии из Instagram на карту. Под картой выводится список найденных фотографий. При каждом перемещении происходит обновление списка загруженных на карту фотографий из instagram. Для работы с проектом вам предварительно необходимо авторизоваться в инстаграме.
+	 </div>
+ </div>
 
+ <hr/>
 
 
 <footer class="row">
